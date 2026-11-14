@@ -14,7 +14,7 @@ export default async function handler(req, res) {
         return res.status(204).end();
     }
 
-    const data = await fs.readFile('../schedule.json');
+    const data = await fs.readFile('./../schedule.json');
     const schedule = JSON.parse(data);
     if (req.method == "GET") {
         res.status(200).json(schedule);
