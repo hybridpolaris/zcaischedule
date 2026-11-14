@@ -36,7 +36,7 @@ export default async function handler(req, res) {
                 body: JSON.stringify(requestBody),
             });
 
-            console.log(response);
+            if (!response.ok) console.log(response);
             res.status(200);
         } catch (err) {
             console.log(err);
