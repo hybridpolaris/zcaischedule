@@ -51,6 +51,7 @@ export default async function handler(req, res) {
                         body: JSON.stringify(requestBody),
                     });
 
+                    if (schedule[parsedData.user_id] == undefined) schedule[parsedData.user_id] = [];
                     schedule[parsedData.user_id].push({
                         "at": parsedData.time,
                         "id": parsedData.id,
