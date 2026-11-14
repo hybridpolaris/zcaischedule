@@ -32,6 +32,8 @@ export default async function handler(req, res) {
                 method: "POST",
                 body: JSON.stringify(requestBody),
             });
+
+            res.status(200);
         } catch (err) {
             console.log(err);
             res.status(400).json({ error: "Invalid JSON" })
