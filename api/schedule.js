@@ -33,7 +33,7 @@ export default async function handler(req, res) {
                     const link = "https://api.posthook.io/v1/hooks"
                     const requestBody = {
                         "path": "/api/hook",
-                        "postAt": parsedData.time,
+                        "postAt": (new Date(parsedData.time)).toISOString(),
                         "data": {
                             "user": parsedData.user_id,
                             "name": parsedData.desc,
