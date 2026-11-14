@@ -51,16 +51,14 @@ export default async function handler(req, res) {
                         body: JSON.stringify(requestBody),
                     });
 
-                    if (schedule[parsedData.user_id] == undefined) schedule[parsedData.user_id] = [];
-                    schedule[parsedData.user_id].push({
+
+                    schedule[parsedData.user_id][(await response.json()).data.id] = {
                         "at": parsedData.time,
-                        "id": parsedData.id,
                         "name": parsedData.desc,
                         "repeating": parsedData.repeating,
                         "interval": parsedData.interval,
-                        "hook": (await response.json()).data.id,
                         "active": true
-                    });
+                    };
                     await fs.writeFile('../schedule.json', JSON.stringify(schedule, null, 2), 'utf-8');
 
                     res.status(200).json(schedule);
