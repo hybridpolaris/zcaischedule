@@ -28,12 +28,16 @@ export default async function handler(req, res) {
                 text: `Nhắc nhở: lịch ${parsedData.data.name} đã đến rồi nhé.`
             }
 
-            await fetch(link, {
+            const response = await fetch(link, {
                 method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify(requestBody),
             });
 
             res.status(200);
+            if (!response.ok) console.log(response);
         } catch (err) {
             console.log(err);
             res.status(400).json({ error: "Invalid JSON" })
