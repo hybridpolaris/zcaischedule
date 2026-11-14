@@ -36,8 +36,8 @@ export default async function handler(req, res) {
                 body: JSON.stringify(requestBody),
             });
 
+            console.log(response);
             res.status(200);
-            if (!response.ok) console.log(response);
         } catch (err) {
             console.log(err);
             res.status(400).json({ error: "Invalid JSON" })
