@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises';
+import path from 'node:path';
 
 export default async function handler(req, res) {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -14,7 +15,7 @@ export default async function handler(req, res) {
         return res.status(204).end();
     }
 
-    const data = await fs.readFile('./../schedule.json');
+    const data = await fs.readFile(path.join(process.cwd(), 'schedule.json'), 'utf-8');
     const schedule = JSON.parse(data);
     if (req.method == "GET") {
         res.status(200).json(schedule);
